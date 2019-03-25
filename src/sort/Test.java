@@ -15,6 +15,7 @@ public class Test {
 
         new SelectionSort().testSort(arr1,0,n);
         InsertSort.getInstance().testSort(arr2,0,n);
+
     }
 
 }

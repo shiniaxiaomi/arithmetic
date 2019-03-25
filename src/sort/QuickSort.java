@@ -6,6 +6,7 @@ package sort;
 
 import util.ArrUtil;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -23,7 +24,7 @@ public class QuickSort extends SortTemplate{
 
     private void quickSort(int[] arr,int l,int r){
 
-        if(l>=r){
+        if(l>r){
             return;
         }
 
@@ -60,21 +61,20 @@ public class QuickSort extends SortTemplate{
     //方法一：解决大量重复数值的问题，防止其退化成O(n^2)的时间复杂度
     //从数组的左右两边向中间扫描，
     private int partition2(int[] arr,int l,int r){
-        //在arr[l+1...i]的元素小于arr[l]
-        //在arr[i+1...j)的元素大于arr[l]
 
         int nextInt = random.nextInt(r - l + 1)+l;
         ArrUtil.swap(arr,l,nextInt);
         int buff=arr[l];
 
+        //arr[l+1...i)<=buff ; arr(j...r]>=buff
         int i=l+1,j=r;
         while(true){
-            while ( i<r && arr[i]<=buff) i++;
-            while ( j>l+1 && arr[j]>=buff) j--;
+            while ( i<=r && arr[i]<buff) i++;
+            while ( j>=l+1 && arr[j]>buff) j--;
+            if(i>j) break;
             ArrUtil.swap(arr,i,j);
             i++;
             j--;
-            if(i>=j) break;
         }
 
         ArrUtil.swap(arr,l,j);
@@ -86,9 +86,9 @@ public class QuickSort extends SortTemplate{
 
     public static void main(String[] args) {
 
-        int[] arr = ArrUtil.randomArr(10, 1, 10);
+        int[] arr = ArrUtil.randomArr(1000000, 1, 1000);
         new QuickSort().testSort(arr,0,arr.length-1);
-        ArrUtil.printArr(arr);
+//        ArrUtil.printArr(arr);
     }
 
 }
