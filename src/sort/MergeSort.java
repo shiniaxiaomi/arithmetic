@@ -5,6 +5,10 @@ import util.ArrUtil;
 /**
  * Created by Administrator on 2019/3/24.
  */
+
+/**
+ * 自顶向下的归并排序（利用了递归）
+ */
 public class MergeSort extends SortTemplate {
 
 
@@ -16,7 +20,7 @@ public class MergeSort extends SortTemplate {
     }
 
     //将arr[l...mid]和arr[mid+1...r]两部分进行归并
-    private void merge(int[] arr,int l,int mid,int r){
+    public static void merge(int[] arr,int l,int mid,int r){
 
         int[] buff=new int[r-l+1];
         for(int i=l;i<=r;i++){

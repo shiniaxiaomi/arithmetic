@@ -9,6 +9,7 @@ import java.util.Date;
  */
 public abstract class SortTemplate {
 
+    //l和r都是相对与数组中的索引
     public void testSort(int[] arr,int l,int r){
         long start = new Date().getTime();
         sort(arr,l,r);
