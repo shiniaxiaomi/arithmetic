@@ -58,7 +58,7 @@ public class QuickSort extends SortTemplate{
         return i;
     }
 
-    //方法一：解决大量重复数值的问题，防止其退化成O(n^2)的时间复杂度
+    //方法二：解决大量重复数值的问题，防止其退化成O(n^2)的时间复杂度
     //从数组的左右两边向中间扫描，
     private int partition2(int[] arr,int l,int r){
 

@@ -9,7 +9,7 @@ import util.ArrUtil;
 import java.util.Random;
 
 /**
- * 3路快排
+ * 快速排序（3路快排）
  */
 public class QuickSort3Way extends SortTemplate {
 
@@ -17,56 +17,55 @@ public class QuickSort3Way extends SortTemplate {
 
     @Override
     public void sort(int[] arr, int l, int r) {
-        quickSort(arr, l, r);
+        quickSort(arr,l,r);
     }
 
+    private void quickSort(int[] arr,int l,int r){
 
-    public void quickSort(int[] arr, int l, int r) {
-
-        if (l >= r) {
+        if(l>=r){
             return;
         }
 
-        int mid[] = partition(arr, l, r);
+        int[] p = partition(arr, l, r);
 
-        quickSort(arr, l, mid[0]);
-        quickSort(arr, mid[1], r);
-
+        quickSort(arr,l,p[0]);
+        quickSort(arr,p[1],r);
 
     }
 
     private int[] partition(int[] arr, int l, int r) {
 
-        int nextInt = random.nextInt(r - l + 1) + l;
-        ArrUtil.swap(arr, l, nextInt);
+        int nextInt = random.nextInt(r - l + 1)+l;
+        ArrUtil.swap(arr,l,nextInt);
 
-        int buff = arr[l];
-        int lt = l;//arr[l+1...lt]<buff
-        int gt = r + 1;//arr[lt+1...i)=buff
-        int i = l + 1;//arr[gt...r]>v
-        while (i < gt) {
-            if (arr[i] > buff) {
-                ArrUtil.swap(arr, i, gt - 1);
-                gt--;
-            } else if (arr[i] == buff) {
-                i++;
-            } else if (arr[i] < buff) {
-                ArrUtil.swap(arr, i, lt + 1);
+        int buff=arr[l];
+
+        //arr[l+1...lt]<buff,arr[lt+1...i-1]=buff,arr[gt...r]>v
+        int lt=l;
+        int gt=r+1;
+        int i=l+1;
+        while(i<gt){
+            if(arr[i]<buff){
+                ArrUtil.swap(arr,i,lt+1);//将等于buff的第一个元素和当前元素交换
                 i++;
                 lt++;
+            }else if(arr[i]==buff){
+                i++;
+            }else{
+                ArrUtil.swap(arr,i,gt-1);//将大于buff的前一个元素和当前元素交换，当前指针保持不变
+                gt--;
             }
         }
-        ArrUtil.swap(arr, l, lt);
+        ArrUtil.swap(arr,l,lt);
 
 
-        return new int[]{lt - 1, gt};
-
+        return new int[]{lt-1,gt};
     }
 
-
     public static void main(String[] args) {
-        int[] arr = ArrUtil.randomArr(1000000, 1, 100);
-        new QuickSort3Way().testSort(arr, 0, arr.length - 1);
+
+        int[] arr = ArrUtil.randomArr(1000000, 1, 100000);
+        new QuickSort3Way().testSort(arr,0,arr.length-1);
 //        ArrUtil.printArr(arr);
     }
 }
