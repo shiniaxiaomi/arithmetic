@@ -7,7 +7,7 @@ import util.ArrUtil;
  */
 
 /**
- * 选择排序类
+ * 选择排序类：从现有数组中找出最小的数放在最前面
  */
 public class SelectionSort extends SortTemplate{
 

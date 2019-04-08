@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * 快速排序
+ * 快速排序：将数组递归的分成两部分，使得左边数组<buff，右边数组>buff，直至完成排序
  */
 public class QuickSort extends SortTemplate{
 
@@ -24,19 +24,21 @@ public class QuickSort extends SortTemplate{
 
     private void quickSort(int[] arr,int l,int r){
 
+        //当数组个数为0时返回
         if(l>r){
             return;
         }
 
+        //找到中间的分界点
         int p = partition2(arr, l, r);
 
-        quickSort(arr,l,p-1);
-        quickSort(arr,p+1,r);
+        quickSort(arr,l,p-1);//处理数组的左半边
+        quickSort(arr,p+1,r);//处理数组的右半边
 
     }
 
     //方法一：对于大量重复数值的数组不能够快速的进行排序
-    //在arr[l...r]中，找到索引p，使得ar[l...p-1]<arr[p],arr[p+1...r]>arr[p]r
+    //在arr[l...r]中，找到索引p，使得arr[l...p-1]<arr[p],arr[p+1...r]>arr[p]
     private int partition(int[] arr,int l,int r){
         //在arr[l+1...i]的元素小于arr[l]
         //在arr[i+1...j)的元素大于arr[l]

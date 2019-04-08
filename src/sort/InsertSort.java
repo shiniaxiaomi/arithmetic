@@ -7,7 +7,7 @@ package sort;
 import util.ArrUtil;
 
 /**
- * 插入排序1
+ * 插入排序1：将下一个值放到前面已经排好序的合适的位置中，直至吧数据全部放完
  */
 public class InsertSort extends SortTemplate {
 
@@ -21,8 +21,8 @@ public class InsertSort extends SortTemplate {
     }
 
 //    @Override
-//    public void sort(int[] arr) {
-//        for(int i=1;i<arr.length;i++){
+//    public void sort(int[] arr,int l,int r) {
+//        for(int i=l;i<r;i++){
 //            //寻找元素arr[i]合适的插入位置
 //            for(int j=i;j>0;j--){
 //                if(arr[j]<arr[j-1]){
@@ -38,22 +38,24 @@ public class InsertSort extends SortTemplate {
     @Override
     public void sort(int[] arr,int l,int r) {
         for(int i=l;i<r;i++){
-            int buff=arr[i];
-            for(int j=i;j>0;j--){
-                if(arr[j-1]>buff){//如果前面的数比当前的buff大，则将前面的数后移
-                    arr[j]=arr[j-1];
-                }else{
-                    arr[j-1]=buff;
-                    break;
-                }
+            int buff=arr[i];//保存当前值
+            int j=i;
+            //维护前面已经排好序的数组
+            while(j>0 && arr[j-1]>buff){//如果前面的数比当前的buff大
+                arr[j]=arr[j-1];//将前面的数赋值到后面
+                j--;
             }
+            arr[j]=buff;//找到了合适的位置
         }
     }
 
     public static void main(String[] args) {
 
-        int[] arr = ArrUtil.randomArr(10000, 10, 100);
+        int[] arr = ArrUtil.randomArr(10, 10, 100);
+        ArrUtil.printArr(arr);
         InsertSort.getInstance().testSort(arr,0,arr.length);
+        ArrUtil.printArr(arr);
+
 
     }
 

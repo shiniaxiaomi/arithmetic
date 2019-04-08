@@ -9,7 +9,7 @@ import util.ArrUtil;
 import java.util.Random;
 
 /**
- * 快速排序（3路快排）
+ * 快速排序（3路快排）：将数组递归分成3部分，左边数组<buff，中间数组=buff，右边数组>buff，直至完成排序
  */
 public class QuickSort3Way extends SortTemplate {
 

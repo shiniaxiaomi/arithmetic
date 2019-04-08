@@ -72,7 +72,7 @@ public class MaxHeap {
     }
 
     private void shiftUp(int k){
-        while (k>1 && data[k]>data[k/2]){
+        while (k>1 && data[k]>data[k/2]){// k/2表示的是父节点（即当前节点和父节点做比较）
             ArrUtil.swap(data,k,k/2);
             k=k/2;//更新k
         }
@@ -81,7 +81,7 @@ public class MaxHeap {
     public int popMax(){
 
         int buff=data[1];
-        data[1]=data[index-1];
+        data[1]=data[index-1];//将最后的一个元素放置到堆定，然后做shiftDown操作
         index--;
 
         shiftDown(1);
@@ -91,7 +91,8 @@ public class MaxHeap {
 
     private void shiftDown(int k){
 
-        if(2*k>(index-1)){//没有节点
+        //2*k查看的是当前节点的左孩子
+        if(2*k>(index-1)){//如果没有左孩子，则没有节点
             return;
         }else if(2*k==(index-1)){//有只左节点
             if(data[k]<data[2*k]){
@@ -99,10 +100,10 @@ public class MaxHeap {
                 shiftDown(2*k);
             }
         }else{//有两个节点
-            if(data[2*k]>data[2*k+1]){
+            if(data[2*k]>data[2*k+1]){//如果左孩子大于右孩子，则和左孩子交换
                 ArrUtil.swap(data,k,2*k);
                 shiftDown(2*k);
-            }else{
+            }else{//如果左孩子小于右孩子，则和右孩子交换
                 ArrUtil.swap(data,k,2*k+1);
                 shiftDown(2*k+1);
             }
